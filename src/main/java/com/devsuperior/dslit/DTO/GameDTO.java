@@ -1,26 +1,28 @@
 package com.devsuperior.dslit.DTO;
 
-
 import com.devsuperior.dslit.entities.Game;
+import org.springframework.beans.BeanUtils;
 
 public class GameDTO {
+
 
     private Long id;
     private String title;
     private Integer year;
+    private String genre;
+    private String platforms;
+    private Double score;
     private String imgUrl;
     private String shortDescription;
+    private String longDescription;
 
-    public GameDTO() {
+    public GameDTO(){}
+
+    public GameDTO(Game entity){
+        BeanUtils.copyProperties(entity, this); //forma mais simplificada de fazer o construtor, porem
+                                                        //precisa dos getters and setters
     }
 
-    public GameDTO(Game entity) {
-        id = entity.getId();
-        title = entity.getTitle();
-        year = entity.getYear();
-        imgUrl = entity.getImgUrl();
-        shortDescription = entity.getShortDescription();
-    }
 
     public Long getId() {
         return id;
@@ -46,6 +48,30 @@ public class GameDTO {
         this.year = year;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getPlatforms() {
+        return platforms;
+    }
+
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
+
     public String getImgUrl() {
         return imgUrl;
     }
@@ -60,5 +86,13 @@ public class GameDTO {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public String getLongDescription() {
+        return longDescription;
+    }
+
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
     }
 }
