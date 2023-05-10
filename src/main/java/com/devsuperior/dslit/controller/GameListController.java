@@ -20,9 +20,18 @@ public class GameListController {
     @Autowired
     private GameListService service;
 
+    @Autowired
+    private GameService gameService;
+
     @GetMapping
     public List<GameListDTO> getAll() {
         var result = service.getAll();
+        return result;
+    }
+
+    @GetMapping(value = "/{listId}/games")
+    public List<GameMinDTO> getAllList(@PathVariable Long listId) {
+        var result = gameService.getAlllist(listId);
         return result;
     }
 
